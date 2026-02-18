@@ -1,193 +1,228 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHOES 15 | Inicio</title>
-    
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👟</text></svg>">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrasLaDar - Gestión Pro</title>
 
-    <style>
-        :root { --fondo: #121212; --texto: #ffffff; --acento: #00BFFF; --tarjeta: #1e1e1e; --sidebar-bg: #000000; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        body { background-color: var(--fondo); color: var(--texto); display: flex; flex-direction: column; min-height: 100vh; }
-        
-        /* BARRA SUPERIOR */
-        .top-bar { position: fixed; top: 0; width: 100%; background-color: rgba(0,0,0,0.95); padding: 15px 20px; display: flex; align-items: center; border-bottom: 2px solid var(--acento); z-index: 1000; backdrop-filter: blur(5px); }
-        .hamburger-btn { font-size: 30px; cursor: pointer; background: none; border: none; color: var(--acento); margin-right: 20px; }
-        .nav-logo { font-weight: 900; font-size: 1.5rem; color: white; text-decoration: none; }
-        .nav-logo span { color: var(--acento); }
-        
-        /* MENÚ LATERAL */
-        .sidenav { height: 100%; width: 0; position: fixed; z-index: 2000; top: 0; left: 0; background-color: var(--sidebar-bg); overflow-x: hidden; transition: 0.3s; padding-top: 60px; box-shadow: 2px 0 10px rgba(0,0,0,0.5); }
-        .closebtn { position: absolute; top: 10px; right: 25px; font-size: 36px; margin-left: 50px; text-decoration: none; color: #818181; }
-        .sidenav a, .dropdown-btn { padding: 15px 20px; text-decoration: none; font-size: 18px; color: #f1f1f1; display: block; transition: 0.3s; border: none; background: none; width: 100%; text-align: left; cursor: pointer; outline: none; }
-        .sidenav a:hover, .dropdown-btn:hover { color: var(--acento); }
-        .fa-caret-down { float: right; padding-right: 8px; font-size: 12px; margin-top: 5px; }
-        .dropdown-container { display: none; background-color: #1a1a1a; padding-left: 15px; border-left: 2px solid var(--acento); }
-        .level-3 { background-color: #262626; padding-left: 30px; }
-        .active-link { color: var(--acento) !important; background-color: #111; border-left: 4px solid var(--acento); }
-        
-        /* CABECERA Y BENEFICIOS */
-        header { text-align: center; padding: 100px 20px 20px; }
-        .logo-text { font-size: 3rem; font-weight: 800; letter-spacing: -1px; background: -webkit-linear-gradient(#fff, var(--acento)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
-        /* ESTILOS DE LA BARRA DE BENEFICIOS (NUEVO) */
-        .benefits-bar {
-            background-color: #1a1a1a; padding: 30px 20px; margin: 20px 0 40px 0;
-            border-top: 1px solid #333; border-bottom: 1px solid #333;
-            display: flex; justify-content: center; flex-wrap: wrap; gap: 40px;
-            position: relative; z-index: 10;
-        }
-        .benefit-item { display: flex; flex-direction: column; align-items: center; text-align: center; min-width: 140px; }
-        .benefit-icon { font-size: 30px; margin-bottom: 10px; }
-        .benefit-title { font-size: 16px; color: var(--acento); margin-bottom: 5px; font-weight: bold; }
-        .benefit-desc { font-size: 13px; color: #aaa; }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-        /* CONTENIDO PRINCIPAL */
-        .container { max-width: 1000px; margin: 0 auto; padding: 20px; flex: 1; }
-        .section-title { margin: 40px 0 25px; border-left: 5px solid var(--acento); padding-left: 15px; text-transform: uppercase; letter-spacing: 1px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        
-        /* PRODUCTO */
-        .producto { background-color: var(--tarjeta); border-radius: 15px; overflow: hidden; transition: transform 0.3s; border: 1px solid #333; }
-        .producto:hover { transform: translateY(-5px); border-color: var(--acento); }
-        .foto-container { width: 100%; height: 300px; background-color: #ffffff; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .foto-container img { width: 100%; height: 100%; object-fit: contain; padding: 15px; }
-        .info { padding: 20px; text-align: center; }
-        .precio { font-size: 1.5rem; color: var(--acento); font-weight: bold; display: block; margin-bottom: 10px; }
-        .btn-comprar { background-color: white; color: black; padding: 10px 20px; text-decoration: none; border-radius: 25px; font-weight: bold; display: inline-block; }
-        .btn-comprar:hover { background-color: var(--acento); color: white; transition: 0.3s; }
-        
-        /* FOOTER Y WHATSAPP */
-        .floating-wsp { position: fixed; bottom: 20px; right: 20px; background-color: #25D366; color: white; padding: 15px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.5); z-index: 100; }
-        footer { text-align: center; padding: 40px; color: #666; font-size: 0.9rem; margin-top: auto; border-top: 1px solid #222; }
-        /* ESTILO PARA EL LOGO PRINCIPAL */
-        .main-logo {
-            width: 120px;  /* Tamaño del logo */
-            height: auto;  /* Mantiene la proporción */
-            margin-bottom: 10px;
-            display: inline-block;
-            filter: drop-shadow(0 0 10px rgba(0, 191, 255, 0.2)); /* Un brillo suave */
-        }
-    </style>
+<style>
+:root {
+    --celeste:#82caff;
+    --whatsapp:#25d366;
+    --oscuro:#333;
+    --blanco:#fff;
+}
+body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background-color:var(--celeste);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+.header-banner{
+    width:100%;
+    height:180px;
+    background:linear-gradient(rgba(0,0,0,.3),rgba(0,0,0,.3)),
+    url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=2070');
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.logo-img{
+    max-width:140px;
+    background:white;
+    padding:10px;
+    border-radius:15px;
+}
+.container{
+    max-width:800px;
+    width:90%;
+    margin-top:-30px;
+    margin-bottom:50px;
+}
+.main-card{
+    background:white;
+    padding:25px;
+    border-radius:20px;
+}
+h2{text-align:center;margin-bottom:15px;}
+.grid-form{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:15px;
+}
+.input-group{
+    display:flex;
+    flex-direction:column;
+}
+label{
+    font-size:.7rem;
+    font-weight:700;
+    margin-bottom:5px;
+    color:#777;
+    text-transform:uppercase;
+}
+input,select{
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    font-size:1rem;
+}
+.input-full{grid-column:1/-1;}
+.services-mix{
+    background:#f8f9fa;
+    padding:15px;
+    border-radius:15px;
+    margin:20px 0;
+    display:flex;
+    justify-content:space-around;
+}
+.service-option{text-align:center;}
+.service-option input{width:60px;text-align:center;}
+.btn-ws{
+    width:100%;
+    background:var(--whatsapp);
+    color:white;
+    border:none;
+    padding:18px;
+    border-radius:12px;
+    font-weight:600;
+    cursor:pointer;
+}
+.footer-info{
+    text-align:center;
+    color:white;
+    margin-top:15px;
+    font-size:.8rem;
+}
+</style>
 </head>
+
 <body>
 
-    <div class="top-bar">
-        <button class="hamburger-btn" onclick="openNav()">&#9776;</button>
-        <a href="index.html" class="nav-logo">SHOES <span>15</span></a>
-    </div>
+<div class="header-banner">
+    <img src="logo.jpg" class="logo-img">
+</div>
 
-    <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        
-        <button class="dropdown-btn">Remeras <span class="fa-caret-down">▼</span></button>
-        <div class="dropdown-container">
-            <a href="remeras.html" style="color:var(--acento); font-weight:bold;">Ver Todas</a>
-            <a href="remeras-deportivas.html">Deportivas</a>
-            <a href="remeras-casuales.html">Casuales</a>
-            <a href="remeras-formales.html">Formales</a>
-        </div>
+<div class="container">
+<div class="main-card">
 
-        <button class="dropdown-btn">Calzado <span class="fa-caret-down">▼</span></button>
-        <div class="dropdown-container">
-            <a href="botines.html">Botines</a>
-            <a href="chanclas.html">Chanclas</a>
-            <button class="dropdown-btn level-3">Urbanas <span class="fa-caret-down">▼</span></button>
-            <div class="dropdown-container level-3">
-                <a href="urbanas.html" style="color:var(--acento); font-weight:bold;">Ver Todas</a>
-                <a href="nike.html">Nike</a>
-                <a href="adidas.html">Adidas</a>
-                <a href="puma.html">Puma</a>
-                <a href="vans.html">Vans</a>
-                <a href="zapatos-formales.html">Formales</a>
-            </div>
-        </div>
+<h2>Gestión de Viajes TrasLaDar</h2>
 
-        <button class="dropdown-btn">Pantalones <span class="fa-caret-down">▼</span></button>
-        <div class="dropdown-container">
-             <a href="pantalones.html" style="color:var(--acento); font-weight:bold;">Ver Todos</a>
-             <a href="cortos.html">Cortos</a>
-             <a href="bermudas.html">Bermudas</a> 
-             <a href="largos.html">Largos</a>
-        </div>
-        
-        <button class="dropdown-btn">Mujer <span class="fa-caret-down">▼</span></button>
-        <div class="dropdown-container">
-             <a href="mujer.html" style="color:var(--acento); font-weight:bold;">Ver Todo</a>
-             <a href="mujer-remeras.html">Remeras</a>
-             <a href="mujer-pantalones.html">Pantalones</a>
-        </div>
+<form id="formViaje">
 
-        <button class="dropdown-btn">Accesorios <span class="fa-caret-down">▼</span></button>
-        <div class="dropdown-container">
-             <a href="accesorios.html" style="color:var(--acento); font-weight:bold;">Ver Todos</a>
-             <a href="gorras.html">Gorras</a>
-             <a href="otros.html">Otros</a>
-        </div>
-    </div>
+<div class="grid-form">
 
-    <header>
-        <h1 class="logo-text">SHOES 15</h1>
-        <p style="margin-top:10px; color: #aaa;">Streetwear & Sneakers</p>
-    </header>
+<div class="input-group input-full">
+<label>Nombre y Apellido</label>
+<input type="text" id="nombre" placeholder="Ej: Juan Pérez" required>
+</div>
 
-    <div class="benefits-bar">
-        <div class="benefit-item">
-            <span class="benefit-icon">🚚</span>
-            <span class="benefit-title">Envíos País</span>
-            <span class="benefit-desc">Llega seguro a tu casa</span>
-        </div>
-        <div class="benefit-item">
-            <span class="benefit-icon">💳</span>
-            <span class="benefit-title">Todos los Medios</span>
-            <span class="benefit-desc">Transferencia y Efectivo</span>
-        </div>
-        <div class="benefit-item">
-            <span class="benefit-icon">🔒</span>
-            <span class="benefit-title">Compra Segura</span>
-            <span class="benefit-desc">Tus datos protegidos</span>
-        </div>
-    </div>
+<div class="input-group input-full">
+<label>Teléfono</label>
+<input type="tel" id="telefono" placeholder="Ej: 351xxxxxxxx" required>
+</div>
 
-    <div class="container">
-        <h2 class="section-title">🔥 Destacados</h2>
-        <div class="grid">
-            <div class="producto">
-                <div class="foto-container"><img src="Fotos/Jordan1retro.webp" alt="Nike Jordan"></div>
-                <div class="info"><h3>Nike Jordan Retro</h3><span class="precio">$120.000</span><a href="nike.html" class="btn-comprar">Ver Nike</a></div>
-            </div>
-            <div class="producto">
-                <div class="foto-container"><img src="Fotos/Jordan1retro.webp" alt="Vans"></div>
-                <div class="info"><h3>Vans Old Skool</h3><span class="precio">$85.000</span><a href="vans.html" class="btn-comprar">Ver Vans</a></div>
-            </div>
-        </div>
-    </div>
+<div class="input-group">
+<label>Origen</label>
+<select id="origen"></select>
+</div>
 
-    <footer>
-        <p style="margin-bottom: 8px;">SHOES 15 &copy; 2026</p>
-        <a href="https://www.instagram.com/_shoes15_" target="_blank" 
-           style="color: #666; text-decoration: none; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600;">
-           Instagram: @_shoes15_
-        </a>
-    </footer>
+<div class="input-group">
+<label>Destino</label>
+<select id="destino"></select>
+</div>
 
-    <a href="https://wa.me/5493512832957" class="floating-wsp">💬 Contactar</a>
+<div class="input-group">
+<label>Fecha</label>
+<input type="date" id="fecha" required>
+</div>
 
-    <script>
-        function openNav() { document.getElementById("mySidenav").style.width = "250px"; }
-        function closeNav() { document.getElementById("mySidenav").style.width = "0"; }
-        var dropdown = document.getElementsByClassName("dropdown-btn");
-        for (var i = 0; i < dropdown.length; i++) {
-            dropdown[i].addEventListener("click", function() {
-                this.classList.toggle("active-link");
-                var dropdownContent = this.nextElementSibling;
-                if (dropdownContent && dropdownContent.classList.contains("dropdown-container")) {
-                    dropdownContent.style.display = (dropdownContent.style.display === "block") ? "none" : "block";
-                }
-            });
-        }
-    </script>
+<div class="input-group input-full">
+<label>Vehículo / Chofer</label>
+<input type="text" id="vehiculo" required>
+</div>
+
+</div>
+
+<div class="services-mix">
+<div class="service-option">👤<br><input type="number" id="p" value="1" min="0"></div>
+<div class="service-option">📦<br><input type="number" id="e" value="0" min="0"></div>
+<div class="service-option">🐾<br><input type="number" id="m" value="0" min="0"></div>
+</div>
+
+<button type="button" class="btn-ws" onclick="procesar()">Registrar Viaje</button>
+
+</form>
+</div>
+
+<div class="footer-info">Sistema Logístico TrasLaDar</div>
+</div>
+
+<script>
+const destinos = ["Córdoba","Río Cuarto","Villa María","Carlos Paz","Buenos Aires"];
+
+function cargarDestinos(){
+    destinos.forEach(d=>{
+        origen.innerHTML += `<option value="${d}">${d}</option>`;
+        destino.innerHTML += `<option value="${d}">${d}</option>`;
+    });
+    fecha.min = new Date().toISOString().split("T")[0];
+}
+cargarDestinos();
+
+async function procesar(){
+    const btn = document.querySelector(".btn-ws");
+
+    const urlExcel = "https://script.google.com/macros/s/AKfycbwv-5wZ3sRtD4Evz0BmOe2ps6PVjDehJy08DMUq1-_YCdgX9IftxlUoalXgVvlaZPVs/exec";
+
+    const datos = {
+        nombre: nombre.value,
+        telefono: telefono.value,
+        fecha: fecha.value,
+        origen: origen.value,
+        destino: destino.value,
+        vehiculo: vehiculo.value,
+        pasajeros: p.value,
+        encomiendas: e.value,
+        mascotas: m.value
+    };
+
+    if(!datos.nombre || !datos.telefono || !datos.fecha || !datos.vehiculo){
+        alert("Completá todos los campos obligatorios");
+        return;
+    }
+
+    btn.disabled = true;
+    btn.innerText = "Guardando...";
+
+    try{
+        await fetch(urlExcel,{
+            method:"POST",
+            mode:"no-cors",
+            body:JSON.stringify(datos)
+        });
+
+        alert("✅ Viaje registrado correctamente");
+
+        document.getElementById("formViaje").reset();
+        p.value = 1;
+        e.value = 0;
+        m.value = 0;
+
+    }catch(err){
+        alert("❌ Error al guardar el viaje");
+    }finally{
+        btn.disabled = false;
+        btn.innerText = "Registrar Viaje";
+    }
+}
+</script>
+
 </body>
 </html>
